@@ -8,7 +8,7 @@ const mockContactApi = () =>
   new Promise((resolve) => {
     setTimeout(() => {
       resolve();
-    }, 1000);
+    }, 500);
   });
 
 const Form = ({ onSuccess, onError }) => {
