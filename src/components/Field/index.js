@@ -33,6 +33,7 @@ const Field = ({
       component = (
         <textarea
           name={name}
+          placeholder={placeholder}
           required={required}
           data-testid="field-testid"
         />
