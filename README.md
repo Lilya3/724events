@@ -1,56 +1,122 @@
-# Print It
+# 724events
 
-Projet 4 réalisé dans le cadre de la formation **Intégrateur Web d’OpenClassrooms**.
+Projet 9 réalisé dans le cadre de la formation **Intégrateur Web d’OpenClassrooms**.
 
-L’objectif était de dynamiser le site statique de **Print It**, une imprimerie familiale fictive, en développant un carrousel interactif avec JavaScript.
+L’objectif était de reprendre et finaliser le site React existant de **724events**, une agence événementielle fictive, en identifiant les anomalies, en corrigeant les fonctionnalités défectueuses et en vérifiant le comportement de l’application avec des tests.
 
 ## Présentation du projet
 
-Print It propose différents services d’impression à destination des entreprises. Le site présente l’entreprise, ses produits, ses engagements et ses informations de contact.
+724events est un site vitrine one-page présentant les prestations, les réalisations et l’équipe d’une agence spécialisée dans l’organisation d’événements.
 
-La mission consistait à compléter la bannière principale afin qu’elle puisse présenter plusieurs offres sous la forme d’un diaporama.
+L’application comprend notamment :
 
-## Fonctionnalités du carrousel
+- un carrousel mettant en avant plusieurs événements ;
+- une présentation des services de l’agence ;
+- une liste paginée des réalisations ;
+- un filtre des événements par catégorie ;
+- une fenêtre modale affichant le détail d’un événement ;
+- une présentation des membres de l’équipe ;
+- un formulaire de contact avec confirmation d’envoi ;
+- un footer affichant la prestation la plus récente.
 
-- affichage de quatre diapositives composées d’une image et d’un texte ;
-- navigation avec les flèches précédente et suivante ;
-- navigation directe grâce aux points situés sous la bannière ;
-- mise en évidence du point correspondant à la diapositive active ;
-- navigation circulaire entre la première et la dernière diapositive ;
-- défilement automatique toutes les trois secondes ;
-- arrêt du défilement automatique après une interaction manuelle ;
-- mise à jour dynamique de l’image et du texte de la bannière.
+## Mission
 
-## Travail réalisé
+Le design et une première intégration avaient déjà été réalisés. La mission consistait à analyser le code existant, rechercher les dysfonctionnements, corriger les bugs et compléter la validation du site avant sa mise en ligne.
 
-- création d’un tableau d’objets regroupant les images et les textes des diapositives ;
-- sélection et manipulation des éléments du DOM ;
-- création d’une fonction de rendu commune ;
-- gestion de l’index de la diapositive active ;
-- programmation des fonctions de navigation précédente, suivante et directe ;
-- ajout des écouteurs d’événements sur les flèches et les points ;
-- utilisation de l’opérateur modulo pour rendre la navigation continue ;
-- mise en place et arrêt du défilement automatique avec `setInterval` et `clearInterval` ;
-- ajout des boutons et des indicateurs du carrousel dans le HTML.
+Le travail a porté sur :
+
+- l’analyse du fonctionnement de l’application et de la circulation des données ;
+- le débogage avec les outils de développement du navigateur et React Developer Tools ;
+- la correction des composants React concernés ;
+- la vérification des fonctionnalités à l’aide de Jest et React Testing Library ;
+- la préparation de scénarios de test dans un cahier de recette.
+
+## Corrections réalisées
+
+### Liste et filtrage des événements
+
+- correction du filtrage des réalisations par catégorie ;
+- génération de la liste des catégories à partir des données disponibles ;
+- réinitialisation de la pagination lors d’un changement de filtre ;
+- recalcul du nombre de pages selon les résultats filtrés ;
+- affichage des détails d’un événement dans une fenêtre modale.
+
+### Carrousel
+
+- tri chronologique des événements mis en avant ;
+- correction de l’affichage des diapositives et de leurs informations ;
+- rotation automatique du carrousel toutes les cinq secondes ;
+- retour à la première diapositive après la dernière ;
+- nettoyage du minuteur lors de la mise à jour du composant.
+
+### Formulaire de contact
+
+- correction de la soumission du formulaire ;
+- ajout d’un état d’envoi empêchant les soumissions multiples ;
+- affichage du libellé « En cours » pendant le traitement ;
+- ouverture d’une fenêtre de confirmation après un envoi réussi.
+
+### Affichage des événements
+
+- correction des informations affichées dans les cartes ;
+- calcul et affichage du mois correspondant à la date de chaque événement ;
+- recherche de l’événement le plus récent pour la section « Notre dernière prestation ».
 
 ## Technologies utilisées
 
+- React 18
+- JavaScript
 - HTML5
-- CSS3
-- JavaScript Vanilla
-- Manipulation du DOM
-- Gestion des événements
-- Google Fonts
+- Sass / SCSS
+- React Context API
+- PropTypes
+- Jest
+- React Testing Library
+- Create React App
+- ESLint et Prettier
 
-Le projet ne repose sur aucun framework ni aucune bibliothèque JavaScript.
+## Données et état de l’application
+
+Les données sont chargées depuis le fichier `public/events.json` par le `DataProvider`.
+
+Le contexte React rend ensuite disponibles :
+
+- les réalisations et les événements mis en avant dans le carrousel ;
+- une valeur initiale permettant d’identifier le chargement en cours ;
+- les éventuelles erreurs rencontrées pendant la récupération des données.
+
+Les composants peuvent accéder à ces informations grâce au hook personnalisé `useData()`.
+
+## Tests
+
+Le projet contient des tests unitaires et d’intégration portant notamment sur :
+
+- les composants `Button`, `Field`, `Select` et `EventCard` ;
+- la récupération des données avec `DataContext` ;
+- le filtrage et l’ouverture des événements ;
+- le carrousel ;
+- le formulaire de contact et sa confirmation ;
+- les fenêtres modales ;
+- l’affichage général de la page d’accueil.
+
+Pour lancer les tests :
+
+```bash
+npm test -- --watchAll=false
+```
 
 ## Branche du projet
 
-- **`main`** : contient la version du site avec le carrousel JavaScript finalisé.
+- **`main`** : contient la version corrigée et finalisée de l’application.
 
 ## Installation et lancement
 
-Ce projet est un site statique et ne nécessite aucune installation de dépendances.
+### Prérequis
+
+- Node.js
+- npm
+
+### Installation
 
 1. Clonez le dépôt :
 
@@ -61,48 +127,78 @@ git clone <URL_DU_DEPOT>
 2. Placez-vous dans le dossier du projet :
 
 ```bash
-cd Print-It-JS
+cd 724events
 ```
 
-3. Ouvrez le fichier `index.html` dans votre navigateur.
+3. Installez les dépendances :
 
-Vous pouvez également utiliser une extension telle que **Live Server** dans Visual Studio Code pour lancer le site localement.
+```bash
+npm install
+```
+
+4. Lancez l’application :
+
+```bash
+npm start
+```
+
+L’application est ensuite accessible à l’adresse `http://localhost:3000`.
+
+## Scripts disponibles
+
+```bash
+npm start
+```
+
+Lance l’application en mode développement.
+
+```bash
+npm test
+```
+
+Lance les tests avec Jest et React Testing Library.
+
+```bash
+npm run build
+```
+
+Génère une version de production dans le dossier `build`.
+
+```bash
+npm run lint
+```
+
+Analyse le code avec ESLint.
 
 ## Structure du projet
 
 ```text
-Projet-4-Print-It-JS/
-├── assets/
-│   ├── images/
-│   │   └── slideshow/  # Images utilisées par le carrousel
-│   ├── script.js       # Logique JavaScript du carrousel
-│   └── style.css       # Mise en forme du site et du carrousel
-├── index.html          # Structure de la page
-└── README.md           # Documentation du projet
+724events/
+├── public/
+│   ├── images/              # Images utilisées sur le site
+│   └── events.json          # Données de l’application
+├── src/
+│   ├── components/          # Composants réutilisables
+│   ├── containers/          # Composants avec logique et état
+│   ├── contexts/            # Chargement et partage des données
+│   ├── helpers/             # Fonctions utilitaires
+│   ├── pages/               # Page principale de l’application
+│   ├── App.js               # Composant racine
+│   └── index.js             # Point d’entrée React
+├── package.json             # Dépendances et scripts
+└── README.md                # Documentation du projet
 ```
-
-## Fonctionnement JavaScript
-
-Les informations des diapositives sont regroupées dans le tableau `slides`. La variable `index` représente la diapositive actuellement affichée.
-
-La fonction `render()` utilise cet index pour :
-
-- modifier la source de l’image principale ;
-- actualiser le texte de la bannière ;
-- déplacer la classe `dot_selected` sur le bon indicateur.
-
-Les fonctions `prev()`, `next()` et `goTo()` modifient l’index avant d’appeler de nouveau la fonction de rendu.
 
 ## Compétences travaillées
 
-- utiliser les fondamentaux de JavaScript ;
-- manipuler le DOM ;
-- réagir aux actions de l’utilisateur avec des événements ;
-- parcourir un tableau et exploiter des objets ;
-- créer et réutiliser des fonctions ;
-- gérer un index et une navigation circulaire ;
-- modifier dynamiquement des classes, des attributs et du contenu HTML ;
-- utiliser une temporisation pour automatiser une action.
+- analyser une application React existante ;
+- identifier et corriger des bugs fonctionnels ;
+- utiliser les outils de débogage du navigateur ;
+- comprendre la propagation des données avec la Context API ;
+- gérer l’état et le cycle de vie avec les hooks React ;
+- tester des composants et des parcours utilisateur ;
+- rédiger des scénarios de validation fonctionnelle ;
+- maintenir et finaliser une base de code existante.
 
 ## Contexte
 
