@@ -1,6 +1,6 @@
 # 724events
 
-Projet 9 réalisé dans le cadre de la formation **Intégrateur Web d’OpenClassrooms**.
+Projet 8 réalisé dans le cadre de la formation **Intégrateur Web d’OpenClassrooms**.
 
 L’objectif était de reprendre et finaliser le site React existant de **724events**, une agence événementielle fictive, en identifiant les anomalies, en corrigeant les fonctionnalités défectueuses et en vérifiant le comportement de l’application avec des tests.
 
